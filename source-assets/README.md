@@ -23,6 +23,11 @@ Jenga and deltaMetrics portfolio presentations.
 ## Music & research
 
 - `music-research-banner-master.jpg` — final website banner with Stockhausen, the original mirrored colour photograph of Tristan Murail, SuperCollider code, and Max/MSP patch graphics
+- `instruments/maxmsp-original.png` — supplied Max/MSP patch screenshot
+- `instruments/openmusic-original.png` — supplied OpenMusic patch screenshot
+- `instruments/javascript-instrument-ranges-original.png` — first supplied JavaScript composition-system screenshot, preserved for later layouts
+- `instruments/javascript-articulation-original.png` — selected JavaScript articulation-generator screenshot
+- `instruments/javascript-syntax-highlighted-master.webp` — colour-treated articulation-generator master used on the Music Lab page
 
 The website uses smaller optimized derivatives from `site/assets/`. The full-size
 source files preserve the supplied resolution and are intended for future case
