@@ -17,7 +17,9 @@ Jenga and deltaMetrics portfolio presentations.
 - `results-matrix-full.webp` — full-resolution longitudinal results matrix
 - `documents-full.webp` — full-resolution source document library
 - `profile-full.webp` — full-resolution archive profile and coverage overview
+- `results-matrix-current.png` — latest supplied blood results screen, preserved as the original PNG
+- `profile-overview-current.png` — latest supplied profile dashboard, preserved as the original PNG
 
 The website uses smaller optimized derivatives from `site/assets/`. The full-size
-WebP sources preserve the supplied resolution and are intended for future case
+source files preserve the supplied resolution and are intended for future case
 study layouts, mockups, and Behance-style presentations.
