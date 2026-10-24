@@ -1,0 +1,23 @@
+# Portfolio case study source assets
+
+Original, uncompressed screenshots and supplied brand images used to build the
+Jenga and deltaMetrics portfolio presentations.
+
+## Jenga
+
+- `brand-logo-original.jpeg` — supplied Jenga logo
+- `dashboard-full.webp` — full-resolution daily overview dashboard
+- `schedule-full.webp` — full-resolution weekly teaching schedule
+- `group-page-full.webp` — full-resolution group details and comments
+- `task-board-full.webp` — full-resolution administrator task board
+
+## deltaMetrics
+
+- `brand-logo-original.png` — supplied deltaMetrics logo
+- `results-matrix-full.webp` — full-resolution longitudinal results matrix
+- `documents-full.webp` — full-resolution source document library
+- `profile-full.webp` — full-resolution archive profile and coverage overview
+
+The website uses smaller optimized derivatives from `site/assets/`. The full-size
+WebP sources preserve the supplied resolution and are intended for future case
+study layouts, mockups, and Behance-style presentations.
