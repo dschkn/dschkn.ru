@@ -1,10 +1,6 @@
 name: Deploy dschkn.ru
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "site/**"
   workflow_dispatch:
 
 concurrency:
@@ -35,7 +31,7 @@ jobs:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
           install -d -m 700 ~/.ssh
-          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H 168.222.203.229 >> ~/.ssh/known_hosts
 
@@ -58,7 +54,7 @@ jobs:
               sys.exit("Missing /etc/caddy/Caddyfile; configure Caddy on the VPS first.")
 
           config = path.read_text()
-          header = re.search(r"(?m)^[^{}\n]*\bdschkn\.ru\b[^{}\n]*\{", config)
+          header = re.search(r"(?m)^[^{}\\n]*\\bdschkn\\.ru\\b[^{}\\n]*\\{", config)
           if header:
               opening = config.find("{", header.start())
               depth = 0
@@ -85,7 +81,7 @@ jobs:
           """
               backup = path.with_name("Caddyfile.dschkn.ru-backup")
               shutil.copy2(path, backup)
-              path.write_text(config.rstrip() + "\n\n" + addition.lstrip())
+              path.write_text(config.rstrip() + "\\n\\n" + addition.lstrip())
               validation = subprocess.run(
                   ["caddy", "validate", "--config", str(path), "--adapter", "caddyfile"],
                   capture_output=True, text=True
@@ -104,6 +100,6 @@ jobs:
 
       - name: Deploy website
         run: |
-          rsync -az --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r \
-            --exclude ".DS_Store" \
+          rsync -az --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r \\
+            --exclude ".DS_Store" \\
             site/ dschkn@168.222.203.229:/var/www/dschkn.ru/
