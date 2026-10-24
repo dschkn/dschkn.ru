@@ -79,6 +79,8 @@
     .services { padding-top: 5px; }
     .service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .service-card { overflow: hidden; border-radius: 24px; background: white; }
+    .service-card { width: 100%; padding: 0; color: inherit; text-align: left; font: inherit; border: 0; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgb(0 0 0 / 5%); }
     .service-art { position: relative; height: 170px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #eae8e5; }
     .service-art::before, .service-art::after { content: ""; position: absolute; border: 1px solid rgb(20 20 20 / 12%); border-radius: 50%; }
     .service-art::before { width: 220px; height: 220px; }
@@ -109,19 +111,8 @@
     .other-card ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; color: #717176; font-size: 12px; line-height: 1.45; }
     .other-card li::before { content: "✓"; margin-right: 8px; color: #111; }
     .music-block { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: center; padding: 30px; border-radius: 24px; background: #e9e9e9; }
-    .music-visual { position: relative; min-height: 285px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 18px; background: #e8e8e8; isolation: isolate; container-type: inline-size; }
-    .music-visual img { position: absolute; display: block; object-fit: cover; border: 0; box-shadow: none; filter: grayscale(100%); mix-blend-mode: multiply; }
-    .music-visual .patch-max { z-index: 0; left: -3%; top: 0; width: 74%; height: 100%; object-position: left center; opacity: .72; }
-    .music-visual .patch-sc { z-index: 1; right: -5%; top: 2%; width: 62%; height: 58%; object-position: top right; opacity: .55; transform: rotate(1deg); }
-    .music-plot { position: absolute; z-index: 2; top: -2%; right: -2%; width: 60%; height: 72%; opacity: .58; }
-    .music-code { position: absolute; z-index: 3; display: grid; width: max-content; max-width: none; white-space: nowrap; font-family: Arial, sans-serif; font-size: clamp(19px, 4.8cqw, 42px); line-height: 1.12; font-weight: 400; letter-spacing: -.045em; text-shadow: 0 1px 2px rgb(255 255 255 / 58%); }
-    .music-code code { font: inherit; }
-    .music-code.magenta { left: 17%; top: 17%; color: #f20cdb; }
-    .music-code.blue { left: 46%; top: 58%; color: #3025ed; }
-    .music-code .small-code { font-size: .76em; }
-    .music-mark { position: absolute; z-index: 4; font-size: clamp(34px, 9cqw, 82px); line-height: 1; font-weight: 400; }
-    .music-mark.left { left: 23%; top: 2%; color: #f20cdb; transform: rotate(12deg); }
-    .music-mark.right { left: 66%; top: 35%; color: #3025ed; transform: rotate(8deg); }
+    .music-visual { min-height: 195px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 18px; background: #1c1c1c; color: #e8e4dd; }
+    .music-visual span { font-size: clamp(46px, 8vw, 90px); font-weight: 500; letter-spacing: -.11em; }
     .music-block h3 { margin: 0 0 12px; font-size: 24px; font-weight: 500; letter-spacing: -.05em; }
     .music-block p { color: #68686c; font-size: 13px; line-height: 1.7; }
     .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -131,6 +122,7 @@
     .note small { color: #85858a; font-size: 11px; }
     .note h3 { margin: 20px 0 8px; font-size: 17px; font-weight: 600; letter-spacing: -.04em; }
     .note p { margin: 0; color: #77777b; font-size: 12px; line-height: 1.55; }
+    .article-status { color: #99999d; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
     .about { padding: 46px 0 78px; }
     .about-inner { display: grid; grid-template-columns: .75fr 1.25fr; gap: 50px; padding: 32px; border-radius: 24px; background: white; }
     .about h2 { max-width: 340px; }
@@ -199,8 +191,8 @@
     <nav class="nav wrap" aria-label="Main navigation">
       <a class="logo" href="#home">dschkn.</a>
       <div class="nav-right">
-        <div class="nav-links">
-          <a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#music">Music</a><a href="#blog">Blog</a>
+      <div class="nav-links">
+          <a href="#home">Home</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#music">Music</a><a href="#blog">Blog</a>
         </div>
         <div class="socials">
           <a href="https://github.com/dschkn" aria-label="GitHub profile" title="GitHub">
@@ -213,7 +205,7 @@
 
   <main id="home">
     <section class="hero wrap">
-      <div class="wordmark" aria-hidden="true">dmitrii shchukin…</div>
+      <div class="wordmark" aria-hidden="true">dmitrii shchukin.</div>
       <div class="hero-row">
         <div>
           <h1>Building digital experiences from concept to production</h1>
@@ -256,67 +248,55 @@
     <section class="section services wrap" id="services">
       <div class="section-title-row"><h2>Services</h2><a class="view-all" href="#contact">Have a project in mind? ↗</a></div>
       <div class="service-grid">
-        <article class="service-card">
+        <button class="service-card" type="button" data-service="personal" aria-haspopup="dialog">
           <div class="service-art portfolio"><span class="art-word">you<span style="color:#999">.</span></span></div>
           <div class="service-content"><div class="service-title-row"><h3>Personal Page</h3><span class="case-label">dschkn.ru/personal_page</span></div>
             <p>A personal site, landing page, or brand identity shaped around your work and audience.</p>
             <div class="includes-label">From first idea to launch:</div><ul class="includes"><li>Website and landing page design</li><li>Naming, identity, and branding</li><li>Responsive build and launch</li></ul>
-            <a class="pill service-button" href="/personal_page/">Explore this service ↗</a>
+            <span class="pill service-button">Explore this service ↗</span>
           </div>
-        </article>
-        <article class="service-card">
+        </button>
+        <button class="service-card" type="button" data-service="made" aria-haspopup="dialog">
           <div class="service-art product"><span class="art-word">made<br>to work</span></div>
           <div class="service-content"><div class="service-title-row"><h3>Made to Work</h3><span class="case-label">dschkn.ru/made_to_work</span></div>
             <p>A private digital service or application designed around the way your team actually works.</p>
             <div class="includes-label">Designed for your workflow:</div><ul class="includes"><li>Custom web applications</li><li>Accounts, roles, and workspaces</li><li>Integrations and deployment</li></ul>
-            <a class="pill service-button" href="/made_to_work/">Explore this service ↗</a>
+            <span class="pill service-button">Explore this service ↗</span>
           </div>
-        </article>
-        <article class="service-card">
+        </button>
+        <button class="service-card" type="button" data-service="learn" aria-haspopup="dialog">
           <div class="service-art education"><span class="art-word">learn<span style="color:#8caa98">.</span></span></div>
           <div class="service-content"><div class="service-title-row"><h3>Learn</h3><span class="case-label">dschkn.ru/learn</span></div>
             <p>Music projects, learning, lectures, seminars, and thoughtful ways to share what I practice.</p>
             <div class="includes-label">Explore together:</div><ul class="includes"><li>Composition and music projects</li><li>Lessons, lectures, and seminars</li><li>Learning materials and events</li></ul>
-            <a class="pill service-button" href="/learn/">Explore this service ↗</a>
+            <span class="pill service-button">Explore this service ↗</span>
           </div>
-        </article>
-        <article class="service-card">
+        </button>
+        <button class="service-card" type="button" data-service="analytics" aria-haspopup="dialog">
           <div class="service-art systems"><span class="art-word">business<br>analytics</span></div>
           <div class="service-content"><div class="service-title-row"><h3>Business Analytics</h3><span class="case-label">dschkn.ru/analytics</span></div>
             <p>Clear reporting and analysis that help teams understand performance and choose what to do next.</p>
             <div class="includes-label">Make data useful:</div><ul class="includes"><li>Metrics and KPI frameworks</li><li>Dashboards and reporting</li><li>Analysis for business decisions</li></ul>
-            <a class="pill service-button" href="/analytics/">Explore this service ↗</a>
+            <span class="pill service-button">Explore this service ↗</span>
           </div>
-        </article>
+        </button>
       </div>
     </section>
 
     <section class="section wrap" id="music">
       <div class="section-title-row"><h2>Music & research</h2><a class="view-all" href="https://boatbehind.online/lab/webernop10">Explore the lab ↗</a></div>
       <div class="music-block">
-        <div class="music-visual" aria-label="Layered collage of a Max audio patch, SuperCollider code, and signal plots"><img class="patch-max" src="assets/music-max-patch.jpg" alt="Max patch for a stereo audio processor"><img class="patch-sc" src="assets/music-supercollider.jpg" alt="SuperCollider code and synthesis controls"><svg class="music-plot" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true"><rect width="600" height="300" fill="#f8f8f8"/><g stroke="#777" stroke-width="1" opacity=".55"><path d="M0 35H600M0 75H600M0 115H600M0 155H600M0 195H600M0 235H600M0 275H600"/><path d="M60 0V300M160 0V300M260 0V300M360 0V300M460 0V300M560 0V300"/></g><g fill="#999" fill-opacity=".36" stroke="#555" stroke-width="2"><path d="M42 25H175V118H42zM212 12H378V94H212zM410 38H556V127H410z"/></g><g fill="none" stroke="#555" stroke-width="3"><path d="M0 205 68 198 101 218 145 112 186 204 242 196 285 225 322 194 360 202 407 133 452 198 506 184 600 207"/><path d="M0 264 55 258 91 267 129 240 167 264 214 250 251 267 304 250 348 260 389 244 433 263 477 252 532 264 600 250"/></g></svg><div class="music-code magenta"><code>// 1. Boot the audio engine</code><code class="small-code">s.boot;</code><code>// 2. Set a global clock at 125 BPM</code></div><div class="music-code blue"><code>t = TempoClock.default;</code><code>t.tempo = 125 / 60;</code></div><span class="music-mark left">(</span><span class="music-mark right">))</span></div>
-        <div><h3>A software engineer with a composer's ear.</h3><p>Music and research in Max/MSP, SuperCollider, OpenMusic, and the work of Stockhausen: sound as material, code as instrument, and listening as a way to think.</p><a class="view-all" href="https://boatbehind.online/lab/webernop10">Visit the music lab ↗</a></div>
+        <div class="music-visual" aria-label="Black and white sound wave"><span>∿ ∿ ∿</span></div>
+        <div><h3>Another way to build with sound.</h3><p>Music and research in spectral music, psychoacoustics, spatial audio, and algorithmic composition: sound as material, code as instrument, and listening as a way to think.</p><a class="view-all" href="https://boatbehind.online/lab/webernop10">Visit the music lab ↗</a></div>
       </div>
     </section>
 
     <section class="section wrap" id="blog">
-      <div class="section-title-row"><h2>Notes & ideas</h2><a class="view-all" href="https://boatbehind.online">More on Boat Behind ↗</a></div>
+      <div class="section-title-row"><h2>Notes & ideas</h2><span class="view-all">A notebook in progress</span></div>
       <div class="notes-grid">
-        <button class="note" type="button" data-note="clarity" aria-haspopup="dialog"><small>PRODUCTS · 2026</small><h3>Making tools feel clear</h3><p>Thoughts on reducing friction in the software people use every day.</p></button>
-        <button class="note" type="button" data-note="listening" aria-haspopup="dialog"><small>SOUND · 2026</small><h3>Listening as a design method</h3><p>What psychoacoustics can teach us about attention, space, and interaction.</p></button>
-        <button class="note" type="button" data-note="sketch" aria-haspopup="dialog"><small>PROCESS · 2026</small><h3>From sketch to running system</h3><p>Small, steady steps from a first idea to a product that can be used.</p></button>
-      </div>
-    </section>
-
-    <section class="about wrap" id="about">
-      <div class="about-inner">
-        <div><div class="case-label">ABOUT</div><h2>Software, sound, and systems.</h2></div>
-        <div class="about-copy">
-          <p>I'm Dmitrii Shchukin — a software engineer, product designer, and composer. I work across full-stack web applications, backend systems, infrastructure, and creative technology.</p>
-          <p>My background in music shapes how I approach software: I look for structure, rhythm, and clarity, then build systems that feel coherent from the inside out.</p>
-          <p>I enjoy working closely with people who care about what they are making — from the first conversation to the details that make a product feel finished.</p>
-          <div class="tags"><span class="tag">Full-stack development</span><span class="tag">Product design</span><span class="tag">Self-hosted systems</span><span class="tag">Creative coding</span></div>
-        </div>
+        <button class="note" type="button" data-note="stankowski" aria-haspopup="dialog"><small>DESIGN · NOTES IN PROGRESS</small><h3>Anton Stankowski</h3><p>Visual systems, symbols, and the graphic language of information.</p></button>
+        <button class="note" type="button" data-note="psychoacoustics" aria-haspopup="dialog"><small>SOUND · NOTES IN PROGRESS</small><h3>Psychoacoustics</h3><p>How sound becomes perception, attention, and an experience of space.</p></button>
+        <button class="note" type="button" data-note="bauhaus" aria-haspopup="dialog"><small>DESIGN · NOTES IN PROGRESS</small><h3>Bauhaus</h3><p>Notes on art, craft, education, and making form serve a purpose.</p></button>
       </div>
     </section>
 
@@ -339,6 +319,7 @@
 
   <dialog class="modal" id="project-modal" aria-labelledby="project-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="project-eyebrow"></div><h2 id="project-title"></h2><div id="project-body"></div></div></dialog>
   <dialog class="modal" id="note-modal" aria-labelledby="note-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="note-eyebrow"></div><h2 id="note-title"></h2><div id="note-body"></div></div></dialog>
+  <dialog class="modal" id="service-modal" aria-labelledby="service-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="service-eyebrow"></div><h2 id="service-title"></h2><div id="service-body"></div></div></dialog>
   <footer><div class="footer wrap"><a class="logo" href="#home">dschkn.</a><span>© 2026 Dmitrii Shchukin</span><div class="footer-links"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#music">Music</a><a href="https://github.com/dschkn">GitHub ↗</a></div></div></footer>
   <script>
     const projectContent = {
@@ -348,13 +329,13 @@
       boat: { eyebrow: "PERSONAL STUDIO · EXPERIMENTS", title: "Boat Behind", body: `<p>Boat Behind is a home for work in progress: software experiments, musical sketches, interactive tools, and notes.</p><h3>A place to explore</h3><p>Some ideas become products. Others remain studies that help shape the next project. The studio keeps both kinds of work visible and connected.</p><ul><li>Small web tools and creative coding</li><li>Musical research and experiments</li><li>Ideas being developed in public</li></ul>` }
     };
     const noteContent = {
-      clarity: { eyebrow: "PRODUCTS · 2026", title: "Making tools feel clear", body: `<p>Useful software makes the next step easy to see. That often starts with a simple question: what is the person trying to do right now?</p><p>When an interface asks people to remember too much, compare too many unrelated things, or guess what happens after a click, the tool adds friction. Clear structure reduces that load: name actions plainly, group related information, and keep feedback close to the action that caused it.</p><h3>Clarity is a product decision</h3><p>It comes from choosing what deserves attention, what can wait, and which details should stay out of the way until they matter. A calm interface is not an empty one; it is an interface that gives each piece of information a reason to be there.</p>` },
-      listening: { eyebrow: "SOUND · 2026", title: "Listening as a design method", body: `<p>Listening is a way to notice relationships: foreground and background, repetition and change, tension and release. Those same relationships appear in a good interface.</p><p>Psychoacoustics reminds us that perception depends on context. A small change can feel large when it interrupts a steady pattern. A dense moment becomes easier to follow when it has a clear point of focus.</p><h3>Designing for attention</h3><p>In software, this means paying attention to timing, contrast, and rhythm. In music, it means shaping the conditions under which a sound can be heard. Both practices ask us to consider not only what is present, but how it is experienced over time.</p>` },
-      sketch: { eyebrow: "PROCESS · 2026", title: "From sketch to running system", body: `<p>A sketch is useful because it makes an idea discussable. It lets us test the shape of a problem before committing to a large build.</p><p>The next step is usually a small working slice: one flow, one page, or one interaction that can be tried in context. Real use reveals questions that static plans often miss.</p><h3>Build in visible steps</h3><p>Keep each step small enough to review, but complete enough to learn from. Connect the interface to real data only when the flow makes sense. Then improve the parts people actually use.</p><p>This turns a first thought into a system through a sequence of concrete decisions rather than one oversized leap.</p>` }
+      stankowski: { eyebrow: "DESIGN · ARTICLE IN PROGRESS", title: "Anton Stankowski", body: `<p class="article-status">Placeholder article · outline to be developed</p><p>This note will look at the work of Anton Stankowski and the way graphic design can explain complex ideas with a small number of clear visual decisions.</p><h3>Starting points</h3><ul><li>How photography, painting, and graphic design meet in his work</li><li>The use of geometry, repetition, and visual rhythm</li><li>Symbols as compact explanations of systems</li></ul><h3>Questions for the finished article</h3><p>What makes an image feel both precise and open to interpretation? How can a visual identity communicate a process instead of decorating it? Which ideas from Stankowski's practice still help designers working with digital products?</p><h3>Notes to add</h3><p>Selected works, dates, references, and personal observations will be added here.</p>` },
+      psychoacoustics: { eyebrow: "SOUND · ARTICLE IN PROGRESS", title: "Psychoacoustics", body: `<p class="article-status">Placeholder article · outline to be developed</p><p>This note will explore how the ear and brain organize sound, and how listening changes with context, expectation, and attention.</p><h3>Starting points</h3><ul><li>Pitch, loudness, timbre, and masking</li><li>Localization, distance, and the perception of space</li><li>Rhythm, expectation, and the way patterns hold attention</li></ul><h3>Questions for the finished article</h3><p>Why can two sounds with similar measurements feel different? How does a room change what we hear? What can composers and interface designers learn from the limits and abilities of human hearing?</p><h3>Notes to add</h3><p>Listening examples, experiments, and reading references will be added here.</p>` },
+      bauhaus: { eyebrow: "DESIGN · ARTICLE IN PROGRESS", title: "Bauhaus", body: `<p class="article-status">Placeholder article · outline to be developed</p><p>This note will gather thoughts on the Bauhaus as a school, a set of teaching experiments, and an ongoing conversation about art, craft, and technology.</p><h3>Starting points</h3><ul><li>Learning through materials, workshops, and shared practice</li><li>Form, function, and the design of everyday objects</li><li>The relationship between visual art, architecture, and industry</li></ul><h3>Questions for the finished article</h3><p>What changes when design is taught through making? How did the school connect individual expression to collective work? Which parts of the Bauhaus story are useful to revisit today?</p><h3>Notes to add</h3><p>People, dates, objects, and references will be added here.</p>` }
     };
     function wireModal(dialog, triggerSelector, content, fields) {
       document.querySelectorAll(triggerSelector).forEach((trigger) => trigger.addEventListener("click", () => {
-        const item = content[trigger.dataset.project || trigger.dataset.note];
+        const item = content[trigger.dataset.project || trigger.dataset.note || trigger.dataset.service];
         if (!item) return;
         document.getElementById(fields.eyebrow).textContent = item.eyebrow;
         document.getElementById(fields.title).textContent = item.title;
@@ -367,6 +348,13 @@
     }
     wireModal(document.getElementById("project-modal"), "[data-project]", projectContent, { eyebrow: "project-eyebrow", title: "project-title", body: "project-body" });
     wireModal(document.getElementById("note-modal"), "[data-note]", noteContent, { eyebrow: "note-eyebrow", title: "note-title", body: "note-body" });
+    const serviceContent = {
+      personal: { eyebrow: "DESIGN & DEVELOPMENT", title: "Personal Page", body: `<p>A clear, distinctive website for an independent professional, creative practice, or small business.</p><h3>What we can make</h3><ul><li>Personal websites and landing pages</li><li>Naming, visual identity, and brand direction</li><li>Portfolio and case study structure</li><li>Responsive implementation and launch</li></ul><h3>How it starts</h3><p>We clarify the audience, message, and material you already have, then shape the site around what visitors need to understand and do.</p><p>Every project is scoped around its goals, content, and timeline.</p>` },
+      made: { eyebrow: "CUSTOM SOFTWARE", title: "Made to Work", body: `<p>A private service or application built around a real workflow, with the right tools in one dependable place.</p><h3>What we can make</h3><ul><li>Internal web applications and portals</li><li>Accounts, roles, and separate workspaces</li><li>Forms, dashboards, and operational tools</li><li>Integrations, deployment, and handover</li></ul><h3>How it starts</h3><p>We map the work as it happens today, identify the parts that slow people down, and build a small usable version to validate the direction.</p><p>The result can grow in stages as the team learns what helps most.</p>` },
+      learn: { eyebrow: "MUSIC & EDUCATION", title: "Learn", body: `<p>Music projects and learning experiences for people who want to listen closely, make things, and understand how they work.</p><h3>Possible formats</h3><ul><li>Composition and collaborative music projects</li><li>One-to-one lessons and guided study</li><li>Lectures, seminars, and workshops</li><li>Learning materials for independent practice</li></ul><h3>Areas of interest</h3><p>Composition, listening, creative technology, and the meeting point between music and software. The format and focus are shaped together around the people taking part.</p>` },
+      analytics: { eyebrow: "BUSINESS ANALYTICS", title: "Make data useful", body: `<p>Clear analysis for teams that need to understand performance and decide what to do next.</p><h3>What we can work on</h3><ul><li>Metric definitions and KPI frameworks</li><li>Dashboards and recurring reports</li><li>Data quality and instrumentation reviews</li><li>Analysis of changes in product or business results</li></ul><h3>How it starts</h3><p>We begin with the decision the team needs to make, check which data can support it, and agree on definitions before building charts or reports.</p><p>The goal is a useful shared view of the business, with assumptions and limitations made clear.</p>` }
+    };
+    wireModal(document.getElementById("service-modal"), "[data-service]", serviceContent, { eyebrow: "service-eyebrow", title: "service-title", body: "service-body" });
     document.getElementById("lead-form").addEventListener("submit", function (event) {
       event.preventDefault();
       this.reset();
