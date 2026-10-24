@@ -149,14 +149,21 @@
     .footer-links { display: flex; gap: 20px; }
     .footer-links a:hover { color: #171717; }
     .modal { width: min(760px, calc(100% - 30px)); max-width: none; max-height: min(84vh, 900px); padding: 0; overflow: hidden; border: 0; border-radius: 24px; background: #fff; color: var(--ink); box-shadow: 0 30px 100px rgb(0 0 0 / 24%); }
+    #project-modal { width: min(980px, calc(100% - 30px)); }
     .modal::backdrop { background: rgb(18 18 18 / 46%); backdrop-filter: blur(5px); }
     .modal-scroll { max-height: min(84vh, 900px); overflow: auto; padding: clamp(24px, 5vw, 48px); }
     .modal-close { position: sticky; float: right; top: 0; width: 38px; height: 38px; margin: -4px -4px 10px 14px; border: 0; border-radius: 50%; background: #f1f1f1; cursor: pointer; font-size: 21px; }
     .modal-eyebrow { color: #88888c; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .modal h2 { margin: 14px 0 16px; font-size: clamp(30px, 5vw, 48px); }
+    .modal-title-row { display: flex; align-items: center; gap: 15px; }
+    .modal-brand-logo { width: 58px; height: 58px; flex: 0 0 58px; border-radius: 17px; object-fit: cover; }
+    .modal-brand-logo[hidden] { display: none; }
     .modal p, .modal li { color: #66666b; font-size: 15px; line-height: 1.75; }
     .modal h3 { margin: 30px 0 8px; font-size: 18px; }
     .modal ul { padding-left: 20px; }
+    .project-story-image { width: 100%; height: auto; display: block; margin: 24px 0 30px; border: 1px solid #ececec; border-radius: 16px; background: #f7f7f7; }
+    .project-story-lead { max-width: 720px; font-size: 18px !important; line-height: 1.65 !important; }
+    .project-story-copy { max-width: 720px; margin-bottom: 0; }
     :focus-visible { outline: 2px solid #777; outline-offset: 3px; }
     @media (max-width: 760px) {
       .wrap { width: min(100% - 32px, 620px); }
@@ -319,13 +326,13 @@
     </section>
   </main>
 
-  <dialog class="modal" id="project-modal" aria-labelledby="project-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="project-eyebrow"></div><h2 id="project-title"></h2><div id="project-body"></div></div></dialog>
+  <dialog class="modal" id="project-modal" aria-labelledby="project-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="project-eyebrow"></div><div class="modal-title-row"><img class="modal-brand-logo" id="project-logo" alt="" hidden><h2 id="project-title"></h2></div><div id="project-body"></div></div></dialog>
   <dialog class="modal" id="note-modal" aria-labelledby="note-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="note-eyebrow"></div><h2 id="note-title"></h2><div id="note-body"></div></div></dialog>
   <dialog class="modal" id="service-modal" aria-labelledby="service-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="service-eyebrow"></div><h2 id="service-title"></h2><div id="service-body"></div></div></dialog>
   <footer><div class="footer wrap"><a class="logo" href="#home">dschkn.</a><span>© 2026 Dmitrii Shchukin</span><div class="footer-links"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#music">Music</a><a href="https://github.com/dschkn">GitHub ↗</a></div></div></footer>
   <script>
     const projectContent = {
-      jenga: { eyebrow: "EDTECH · PRODUCT IN PROGRESS", title: "Jenga", body: `<p>A workspace for language schools that brings the daily rhythm of teaching into one clear place.</p><h3>What it brings together</h3><ul><li>Students, teachers, and groups</li><li>Lessons, schedules, and attendance</li><li>A teacher-facing cabinet for everyday work</li></ul><h3>Product direction</h3><p>Jenga is being developed as a practical school operating system, with a web product and a mobile experience for teachers.</p>` },
+      jenga: { eyebrow: "EDTECH · PRODUCT IN PROGRESS", title: "Jenga", logo: "assets/jenga-logo.jpeg", body: `<p class="project-story-lead">Jenga is a calm operating space for language schools. Students, groups, schedules, tasks, and everyday decisions live together, so the team can see what needs attention without digging through chats and spreadsheets.</p><img class="project-story-image" src="assets/jenga-dashboard.webp" alt="Jenga dashboard with today's tasks, clients requiring attention, events, notes, and weekly workload"><h3>Your school, visible at a glance</h3><p class="project-story-copy">The dashboard brings the working day into focus: urgent tasks, clients who need a follow-up, upcoming events, and the team's current workload. The right information appears before a small issue becomes a missed payment or an empty place in a group.</p><img class="project-story-image" src="assets/jenga-schedule.webp" alt="Weekly teaching schedule in Jenga"><h3>A schedule built for real school life</h3><p class="project-story-copy">See teachers, rooms, groups, and individual lessons in one clear calendar. Weekly and daily views make changes easy to understand, while colour and status help the team notice conflicts immediately.</p><img class="project-story-image" src="assets/jenga-group.webp" alt="Language group page in Jenga with course details and group comments"><h3>Every group keeps its context</h3><p class="project-story-copy">Course details, students, dates, payments, tasks, and the team's comments stay attached to the group. A new administrator can understand its history in minutes instead of reconstructing it from memory.</p><img class="project-story-image" src="assets/jenga-tasks.webp" alt="Jenga administrator task board"><h3>Work moves forward together</h3><p class="project-story-copy">The shared task board turns routine operations into visible, assignable work. Automatic reminders and personal columns help the team coordinate launches, payments, calls, and follow-ups without another disconnected tool.</p><p>Jenga is being developed as a practical school operating system, with a web workspace for administrators and a focused mobile experience for teachers.</p>` },
       delta: { eyebrow: "ANALYTICS · PRODUCT IN PROGRESS", title: "deltaMetrics", body: `<p>deltaMetrics is a focused analytics workspace for teams that need to understand what is changing in their business and why.</p><h3>What it brings together</h3><ul><li>Clear definitions for business and product metrics</li><li>Dashboards for trends, targets, and anomalies</li><li>Reports that connect numbers to concrete decisions</li><li>A shared view of performance across the team</li></ul><h3>Product direction</h3><p>The product is designed to turn scattered operational data into a small set of trustworthy signals. The aim is to make analysis easier to read, easier to discuss, and useful in everyday work.</p>` },
       lab: { eyebrow: "MUSIC · RESEARCH", title: "Music & Sound Lab", body: `<p>A collection of studies in sound, listening, and algorithmic composition.</p><h3>Current interests</h3><ul><li>Spectral music and psychoacoustics</li><li>Spatial audio and sound perception</li><li>Generative systems and compositional rules</li><li>Creative coding with Max/MSP and SuperCollider</li></ul><p>The lab is a working notebook: experiments can begin as a patch, a score, a listening question, or a small piece of software.</p>` },
       boat: { eyebrow: "PERSONAL STUDIO · EXPERIMENTS", title: "Boat Behind", body: `<p>Boat Behind is a home for work in progress: software experiments, musical sketches, interactive tools, and notes.</p><h3>A place to explore</h3><p>Some ideas become products. Others remain studies that help shape the next project. The studio keeps both kinds of work visible and connected.</p><ul><li>Small web tools and creative coding</li><li>Musical research and experiments</li><li>Ideas being developed in public</li></ul>` }
@@ -342,13 +349,18 @@
         document.getElementById(fields.eyebrow).textContent = item.eyebrow;
         document.getElementById(fields.title).textContent = item.title;
         document.getElementById(fields.body).innerHTML = item.body;
+        const logo = fields.logo ? document.getElementById(fields.logo) : null;
+        if (logo) {
+          logo.hidden = !item.logo;
+          if (item.logo) { logo.src = item.logo; logo.alt = `${item.title} logo`; }
+        }
         dialog.showModal();
         dialog.querySelector(".modal-scroll").scrollTop = 0;
       }));
       dialog.querySelector(".modal-close").addEventListener("click", () => dialog.close());
       dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
     }
-    wireModal(document.getElementById("project-modal"), "[data-project]", projectContent, { eyebrow: "project-eyebrow", title: "project-title", body: "project-body" });
+    wireModal(document.getElementById("project-modal"), "[data-project]", projectContent, { eyebrow: "project-eyebrow", title: "project-title", body: "project-body", logo: "project-logo" });
     wireModal(document.getElementById("note-modal"), "[data-note]", noteContent, { eyebrow: "note-eyebrow", title: "note-title", body: "note-body" });
     const serviceContent = {
       personal: { eyebrow: "DESIGN & DEVELOPMENT", title: "Personal Page", body: `<p>A clear, distinctive website for an independent professional, creative practice, or small business.</p><h3>What we can make</h3><ul><li>Personal websites and landing pages</li><li>Naming, visual identity, and brand direction</li><li>Portfolio and case study structure</li><li>Responsive implementation and launch</li></ul><h3>How it starts</h3><p>We clarify the audience, message, and material you already have, then shape the site around what visitors need to understand and do.</p><p>Every project is scoped around its goals, content, and timeline.</p>` },
