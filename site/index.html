@@ -66,7 +66,8 @@
     .project-top, .project-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .project-name-wrap { display: flex; align-items: center; gap: 14px; }
     .project-logo { width: 48px; height: 48px; display: grid; flex: 0 0 48px; place-items: center; border-radius: 15px; color: #fff; background: #171717; font-size: 19px; font-weight: 700; }
-    .project-logo.jenga { background: var(--accent); color: #171717; }
+    .project-logo.jenga { overflow: hidden; background: var(--accent); }
+    .project-logo.jenga img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .project-logo.muse { background: #493b8d; }
     .project-logo.lab { background: #287a72; }
     .project-logo.tools { background: #d56a41; }
@@ -223,7 +224,7 @@
       <div class="section-title-row"><h2>Featured Projects</h2><a class="view-all" href="#projects">View selected work ↓</a></div>
       <div class="project-grid">
         <button class="project-card" type="button" data-project="jenga" aria-haspopup="dialog">
-          <div class="project-top"><div class="project-name-wrap"><span class="project-logo jenga">J</span><div><h3>Jenga</h3><div class="project-meta">Independent Product · 2026</div></div></div><span class="project-view">In progress</span></div>
+          <div class="project-top"><div class="project-name-wrap"><span class="project-logo jenga"><img src="assets/jenga-logo.jpeg" alt="Jenga logo"></span><div><h3>Jenga</h3><div class="project-meta">Independent Product · 2026</div></div></div><span class="project-view">In progress</span></div>
           <p class="project-description">A focused workspace for language schools: students, lessons, schedules, and the everyday work around them.</p>
           <div class="project-bottom"><div class="tags"><span class="tag">EdTech</span><span class="tag">CRM</span><span class="tag">Product Design</span></div><span class="project-view">View →</span></div>
         </button>
