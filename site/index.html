@@ -43,13 +43,14 @@
     .socials { gap: 14px; color: #7d7d82; }
     .socials svg { display: block; width: 17px; height: 17px; fill: currentColor; }
     .hero { padding-top: 2px; }
-    .wordmark { overflow: hidden; margin: 0 0 2px -8px; color: #d0d0d0; font-size: clamp(80px, 15.8vw, 190px); line-height: .94; font-weight: 700; letter-spacing: -.092em; white-space: nowrap; }
+    .wordmark { overflow: hidden; margin: 0 0 2px -8px; background: linear-gradient(105deg, #c8c8ca 8%, #f0b7c9 24%, #b7c6ff 40%, #ace3d1 57%, #ead9a9 72%, #c8c8ca 88%); background-size: 240% 100%; background-clip: text; -webkit-background-clip: text; color: transparent; font-size: clamp(57px, 10.8vw, 137px); line-height: .98; font-weight: 700; letter-spacing: -.092em; white-space: nowrap; animation: name-shimmer 15s ease-in-out infinite alternate; }
+    @keyframes name-shimmer { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
     .hero-row { display: grid; grid-template-columns: minmax(0, 1fr) 245px; align-items: center; gap: 46px; max-width: 930px; padding-bottom: 48px; }
     h1 { max-width: 650px; margin: 0 0 17px; font-size: clamp(38px, 5.1vw, 58px); line-height: 1.03; font-weight: 500; letter-spacing: -.065em; }
     .hero-copy { max-width: 630px; color: var(--muted); font-size: 15px; line-height: 1.62; }
     .hero-copy p { margin: 0 0 14px; }
     .hero-copy p:last-child { margin-bottom: 0; }
-    .portrait { width: 232px; height: 232px; border-radius: 50%; display: block; object-fit: cover; object-position: 50% 38%; filter: grayscale(100%); }
+    .portrait { width: 232px; height: 232px; border-radius: 50%; display: block; object-fit: cover; object-position: 50% 38%; }
     .pill { display: inline-flex; min-height: 47px; align-items: center; justify-content: center; gap: 10px; padding: 0 24px; border: 0; border-radius: 999px; background: #191919; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform .18s ease, background .18s ease; }
     .pill:hover { transform: translateY(-2px); background: #3a3a3a; }
     .hero .pill { margin-top: 20px; }
@@ -61,6 +62,7 @@
     .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .project-card { display: flex; min-height: 180px; flex-direction: column; justify-content: space-between; padding: 22px 23px 21px; border-radius: 24px; background: var(--card); transition: transform .2s ease, box-shadow .2s ease; }
     .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgb(0 0 0 / 5%); }
+    .project-card { color: inherit; text-align: left; font: inherit; border: 0; cursor: pointer; }
     .project-top, .project-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .project-name-wrap { display: flex; align-items: center; gap: 14px; }
     .project-logo { width: 48px; height: 48px; display: grid; flex: 0 0 48px; place-items: center; border-radius: 15px; color: #fff; background: #171717; font-size: 19px; font-weight: 700; }
@@ -107,12 +109,18 @@
     .other-card ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; color: #717176; font-size: 12px; line-height: 1.45; }
     .other-card li::before { content: "✓"; margin-right: 8px; color: #111; }
     .music-block { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: center; padding: 30px; border-radius: 24px; background: #e9e9e9; }
-    .music-visual { min-height: 195px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 18px; background: #1c1c1c; color: #e8e4dd; }
-    .music-visual span { font-size: clamp(46px, 8vw, 90px); font-weight: 500; letter-spacing: -.11em; }
+    .music-visual { position: relative; min-height: 285px; overflow: hidden; border-radius: 18px; background: radial-gradient(circle at 72% 36%, #f5e7c9, transparent 32%), #d6d8d5; }
+    .music-visual img { position: absolute; display: block; object-fit: cover; border: 5px solid #fff; box-shadow: 0 14px 38px rgb(0 0 0 / 17%); }
+    .music-visual .patch-max { z-index: 1; left: 3%; top: 9%; width: 62%; height: 67%; object-position: center; transform: rotate(-4deg); }
+    .music-visual .patch-sc { z-index: 2; right: 3%; top: 5%; width: 48%; height: 40%; object-position: top; transform: rotate(3deg); }
+    .music-visual .studio-photo { z-index: 3; right: 9%; bottom: -8%; width: 31%; height: 60%; object-position: 35% center; transform: rotate(-3deg); }
+    .music-stamp { position: absolute; z-index: 4; left: 8%; bottom: 8%; padding: 7px 10px; border-radius: 99px; background: #191919; color: white; font-size: 9px; font-weight: 700; letter-spacing: .1em; }
     .music-block h3 { margin: 0 0 12px; font-size: 24px; font-weight: 500; letter-spacing: -.05em; }
     .music-block p { color: #68686c; font-size: 13px; line-height: 1.7; }
     .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .note { min-height: 150px; padding: 21px; border-radius: 20px; background: white; }
+    .note { display: block; width: 100%; border: 0; color: inherit; text-align: left; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+    .note:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgb(0 0 0 / 5%); }
     .note small { color: #85858a; font-size: 11px; }
     .note h3 { margin: 20px 0 8px; font-size: 17px; font-weight: 600; letter-spacing: -.04em; }
     .note p { margin: 0; color: #77777b; font-size: 12px; line-height: 1.55; }
@@ -139,6 +147,15 @@
     .footer { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #828287; font-size: 11px; }
     .footer-links { display: flex; gap: 20px; }
     .footer-links a:hover { color: #171717; }
+    .modal { width: min(760px, calc(100% - 30px)); max-width: none; max-height: min(84vh, 900px); padding: 0; overflow: hidden; border: 0; border-radius: 24px; background: #fff; color: var(--ink); box-shadow: 0 30px 100px rgb(0 0 0 / 24%); }
+    .modal::backdrop { background: rgb(18 18 18 / 46%); backdrop-filter: blur(5px); }
+    .modal-scroll { max-height: min(84vh, 900px); overflow: auto; padding: clamp(24px, 5vw, 48px); }
+    .modal-close { position: sticky; float: right; top: 0; width: 38px; height: 38px; margin: -4px -4px 10px 14px; border: 0; border-radius: 50%; background: #f1f1f1; cursor: pointer; font-size: 21px; }
+    .modal-eyebrow { color: #88888c; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .modal h2 { margin: 14px 0 16px; font-size: clamp(30px, 5vw, 48px); }
+    .modal p, .modal li { color: #66666b; font-size: 15px; line-height: 1.75; }
+    .modal h3 { margin: 30px 0 8px; font-size: 18px; }
+    .modal ul { padding-left: 20px; }
     :focus-visible { outline: 2px solid #777; outline-offset: 3px; }
     @media (max-width: 760px) {
       .wrap { width: min(100% - 32px, 620px); }
@@ -147,7 +164,7 @@
       .nav-links { gap: 15px; font-size: 11px; }
       .nav-links a:nth-child(2), .nav-links a:nth-child(4) { display: none; }
       .socials { display: none; }
-      .wordmark { margin: 20px 0 12px -4px; font-size: clamp(60px, 16vw, 100px); }
+      .wordmark { margin: 20px 0 12px -4px; font-size: clamp(48px, 10.3vw, 68px); }
       .hero-row { grid-template-columns: 1fr 112px; gap: 18px; padding-bottom: 36px; }
       h1 { font-size: clamp(30px, 7vw, 42px); }
       .hero-copy { font-size: 12px; }
@@ -160,14 +177,14 @@
       .addon-grid, .other-grid, .notes-grid { grid-template-columns: 1fr; }
       .music-block, .about-inner, .contact-layout { grid-template-columns: 1fr; }
       .music-block { padding: 18px; }
-      .music-visual { min-height: 145px; }
+      .music-visual { min-height: 210px; }
       .about-inner { gap: 24px; padding: 23px; }
       .contact-layout { gap: 25px; }
       .contact-card { grid-template-columns: 1fr; }
       .field.full { grid-column: auto; }
       .footer { padding-block: 20px; flex-direction: column; align-items: flex-start; }
     }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
   </style>
 </head>
 <body>
@@ -189,7 +206,7 @@
 
   <main id="home">
     <section class="hero wrap">
-      <div class="wordmark" aria-hidden="true">dmitrii</div>
+      <div class="wordmark" aria-hidden="true">dmitrii shchukin…</div>
       <div class="hero-row">
         <div>
           <h1>Building digital experiences from concept to production</h1>
@@ -206,26 +223,26 @@
     <section class="section wrap" id="projects">
       <div class="section-title-row"><h2>Featured Projects</h2><a class="view-all" href="#projects">View selected work ↓</a></div>
       <div class="project-grid">
-        <a class="project-card" href="https://github.com/dschkn">
+        <button class="project-card" type="button" data-project="jenga" aria-haspopup="dialog">
           <div class="project-top"><div class="project-name-wrap"><span class="project-logo jenga">J</span><div><h3>Jenga</h3><div class="project-meta">Independent Product · 2026</div></div></div><span class="project-view">In progress</span></div>
           <p class="project-description">A focused workspace for language schools: students, lessons, schedules, and the everyday work around them.</p>
           <div class="project-bottom"><div class="tags"><span class="tag">EdTech</span><span class="tag">CRM</span><span class="tag">Product Design</span></div><span class="project-view">View →</span></div>
-        </a>
-        <a class="project-card" href="https://boatbehind.online/muse">
+        </button>
+        <button class="project-card" type="button" data-project="muse" aria-haspopup="dialog">
           <div class="project-top"><div class="project-name-wrap"><span class="project-logo muse">M</span><div><h3>MUSE</h3><div class="project-meta">Personal Project · 2026</div></div></div><span class="project-view">View →</span></div>
           <p class="project-description">A visual space for connected notes, fragments, and ideas — a thinking tool shaped like an instrument.</p>
           <div class="project-bottom"><div class="tags"><span class="tag">Web App</span><span class="tag">Interaction Design</span></div><span class="project-view">Open ↗</span></div>
-        </a>
-        <a class="project-card" href="https://boatbehind.online/lab/webernop10">
+        </button>
+        <button class="project-card" type="button" data-project="lab" aria-haspopup="dialog">
           <div class="project-top"><div class="project-name-wrap"><span class="project-logo lab">∿</span><div><h3>Music & Sound Lab</h3><div class="project-meta">Research Project · 2025—26</div></div></div><span class="project-view">View →</span></div>
           <p class="project-description">Interactive studies in spectral music, spatial audio, algorithmic composition, and the perception of sound.</p>
           <div class="project-bottom"><div class="tags"><span class="tag">Audio</span><span class="tag">Creative Coding</span></div><span class="project-view">Open ↗</span></div>
-        </a>
-        <a class="project-card" href="https://boatbehind.online">
+        </button>
+        <button class="project-card" type="button" data-project="boat" aria-haspopup="dialog">
           <div class="project-top"><div class="project-name-wrap"><span class="project-logo tools">↗</span><div><h3>Boat Behind</h3><div class="project-meta">Personal Studio · 2024—26</div></div></div><span class="project-view">View →</span></div>
           <p class="project-description">A home for experiments, web tools, musical sketches, and ideas in progress.</p>
           <div class="project-bottom"><div class="tags"><span class="tag">Experiments</span><span class="tag">Generative Art</span></div><span class="project-view">Open ↗</span></div>
-        </a>
+        </button>
       </div>
     </section>
 
@@ -234,74 +251,59 @@
       <div class="service-grid">
         <article class="service-card">
           <div class="service-art portfolio"><span class="art-word">you<span style="color:#999">.</span></span></div>
-          <div class="service-content"><div class="service-title-row"><h3>Personal Page</h3><span class="case-label">Case Study</span></div>
-            <p>A personal portfolio to present your work, skills, and ideas with a clear point of view.</p>
-            <div class="includes-label">What's included:</div><ul class="includes"><li>Project galleries and case studies</li><li>Skills and experience presentation</li><li>Responsive, accessible layout</li></ul>
-            <a class="pill service-button" href="#contact">Discuss your page ↗</a>
+          <div class="service-content"><div class="service-title-row"><h3>Personal Page</h3><span class="case-label">dschkn.ru/personal_page</span></div>
+            <p>A personal site, landing page, or brand identity shaped around your work and audience.</p>
+            <div class="includes-label">From first idea to launch:</div><ul class="includes"><li>Website and landing page design</li><li>Naming, identity, and branding</li><li>Responsive build and launch</li></ul>
+            <a class="pill service-button" href="/personal_page/">Explore this service ↗</a>
           </div>
         </article>
         <article class="service-card">
           <div class="service-art product"><span class="art-word">made<br>to work</span></div>
-          <div class="service-content"><div class="service-title-row"><h3>Product Showcase</h3><span class="case-label">Case Study</span></div>
-            <p>A focused product website that explains what your app does and helps people take the next step.</p>
-            <div class="includes-label">What's included:</div><ul class="includes"><li>Feature and product storytelling</li><li>Pricing and plan comparisons</li><li>Conversion-minded page structure</li></ul>
-            <a class="pill service-button" href="#contact">Discuss your product ↗</a>
+          <div class="service-content"><div class="service-title-row"><h3>Made to Work</h3><span class="case-label">dschkn.ru/made_to_work</span></div>
+            <p>A private digital service or application designed around the way your team actually works.</p>
+            <div class="includes-label">Designed for your workflow:</div><ul class="includes"><li>Custom web applications</li><li>Accounts, roles, and workspaces</li><li>Integrations and deployment</li></ul>
+            <a class="pill service-button" href="/made_to_work/">Explore this service ↗</a>
           </div>
         </article>
         <article class="service-card">
           <div class="service-art education"><span class="art-word">learn<span style="color:#8caa98">.</span></span></div>
-          <div class="service-content"><div class="service-title-row"><h3>Educational Website</h3><span class="case-label">Case Study</span></div>
-            <p>A welcoming online space for educators, schools, courses, and learning communities.</p>
-            <div class="includes-label">What's included:</div><ul class="includes"><li>Course and service presentation</li><li>Clear student-facing navigation</li><li>Room to grow into a learning platform</li></ul>
-            <a class="pill service-button" href="#contact">Discuss your website ↗</a>
+          <div class="service-content"><div class="service-title-row"><h3>Learn</h3><span class="case-label">dschkn.ru/learn</span></div>
+            <p>Music projects, learning, lectures, seminars, and thoughtful ways to share what I practice.</p>
+            <div class="includes-label">Explore together:</div><ul class="includes"><li>Composition and music projects</li><li>Lessons, lectures, and seminars</li><li>Learning materials and events</li></ul>
+            <a class="pill service-button" href="/learn/">Explore this service ↗</a>
           </div>
         </article>
         <article class="service-card">
-          <div class="service-art systems"><span class="art-word">one less<br>thing</span></div>
-          <div class="service-content"><div class="service-title-row"><h3>Web Apps & Automation</h3><span class="case-label">Custom Build</span></div>
-            <p>Useful internal tools and integrations that take repetitive work off your team's plate.</p>
-            <div class="includes-label">What's included:</div><ul class="includes"><li>Dashboards, forms, and admin panels</li><li>API integrations and data flows</li><li>Deployment and technical handover</li></ul>
-            <a class="pill service-button" href="#contact">Discuss a tool ↗</a>
+          <div class="service-art systems"><span class="art-word">business<br>analytics</span></div>
+          <div class="service-content"><div class="service-title-row"><h3>Business Analytics</h3><span class="case-label">dschkn.ru/analytics</span></div>
+            <p>Clear reporting and analysis that help teams understand performance and choose what to do next.</p>
+            <div class="includes-label">Make data useful:</div><ul class="includes"><li>Metrics and KPI frameworks</li><li>Dashboards and reporting</li><li>Analysis for business decisions</li></ul>
+            <a class="pill service-button" href="/analytics/">Explore this service ↗</a>
           </div>
         </article>
-      </div>
-    </section>
-
-    <section class="section wrap" id="addons">
-      <div class="section-title-row"><h2>Plug-ins</h2></div>
-      <div class="addons">
-        <p class="addons-intro">Small additions that make a website more useful. Combine them with a new build or add them to an existing project.</p>
-        <div class="addon-grid">
-          <div class="addon"><strong>Custom domain</strong><span>Connect your own domain</span></div>
-          <div class="addon"><strong>Blog & notes</strong><span>A place to publish ideas</span></div>
-          <div class="addon"><strong>Analytics</strong><span>Understand what visitors do</span></div>
-          <div class="addon"><strong>Lead collection</strong><span>Capture project enquiries</span></div>
-          <div class="addon"><strong>Bookings</strong><span>Let clients find a time</span></div>
-          <div class="addon"><strong>Custom interactions</strong><span>Motion with a purpose</span></div>
-        </div>
       </div>
     </section>
 
     <section class="section wrap" id="music">
       <div class="section-title-row"><h2>Music & research</h2><a class="view-all" href="https://boatbehind.online/lab/webernop10">Explore the lab ↗</a></div>
       <div class="music-block">
-        <div class="music-visual" aria-label="Abstract sound wave artwork"><span>∿ ∿ ∿</span></div>
-        <div><h3>Another way to build with sound.</h3><p>Alongside software, I compose and research sound. My work explores spectral music, psychoacoustics, spatial audio, and the ways rules can generate new musical forms.</p><a class="view-all" href="https://boatbehind.online/lab/webernop10">Visit the music lab ↗</a></div>
+        <div class="music-visual" aria-label="Collage of Max and SuperCollider composition tools and a recording studio"><img class="patch-max" src="assets/music-max-patch.jpg" alt="Max patch for a stereo audio processor"><img class="patch-sc" src="assets/music-supercollider.jpg" alt="SuperCollider code and synthesis controls"><img class="studio-photo" src="assets/music-studio.jpg" alt="Studio monitor and recording equipment"><span class="music-stamp">MAX · SUPERCOLLIDER · LISTENING</span></div>
+        <div><h3>A software engineer with a composer's ear.</h3><p>Music and research in Max/MSP, SuperCollider, OpenMusic, and the work of Stockhausen: sound as material, code as instrument, and listening as a way to think.</p><a class="view-all" href="https://boatbehind.online/lab/webernop10">Visit the music lab ↗</a></div>
       </div>
     </section>
 
     <section class="section wrap" id="blog">
       <div class="section-title-row"><h2>Notes & ideas</h2><a class="view-all" href="https://boatbehind.online">More on Boat Behind ↗</a></div>
       <div class="notes-grid">
-        <article class="note"><small>PRODUCTS · 2026</small><h3>Making tools feel clear</h3><p>Thoughts on reducing friction in the software people use every day.</p></article>
-        <article class="note"><small>SOUND · 2026</small><h3>Listening as a design method</h3><p>What psychoacoustics can teach us about attention, space, and interaction.</p></article>
-        <article class="note"><small>PROCESS · 2026</small><h3>From sketch to running system</h3><p>Small, steady steps from a first idea to a product that can be used.</p></article>
+        <button class="note" type="button" data-note="clarity" aria-haspopup="dialog"><small>PRODUCTS · 2026</small><h3>Making tools feel clear</h3><p>Thoughts on reducing friction in the software people use every day.</p></button>
+        <button class="note" type="button" data-note="listening" aria-haspopup="dialog"><small>SOUND · 2026</small><h3>Listening as a design method</h3><p>What psychoacoustics can teach us about attention, space, and interaction.</p></button>
+        <button class="note" type="button" data-note="sketch" aria-haspopup="dialog"><small>PROCESS · 2026</small><h3>From sketch to running system</h3><p>Small, steady steps from a first idea to a product that can be used.</p></button>
       </div>
     </section>
 
     <section class="about wrap" id="about">
       <div class="about-inner">
-        <div><div class="case-label">ABOUT</div><h2>A software engineer with a composer's ear.</h2></div>
+        <div><div class="case-label">ABOUT</div><h2>Software, sound, and systems.</h2></div>
         <div class="about-copy">
           <p>I'm Dmitrii Shchukin — a software engineer, product designer, and composer. I work across full-stack web applications, backend systems, infrastructure, and creative technology.</p>
           <p>My background in music shapes how I approach software: I look for structure, rhythm, and clarity, then build systems that feel coherent from the inside out.</p>
@@ -328,8 +330,36 @@
     </section>
   </main>
 
+  <dialog class="modal" id="project-modal" aria-labelledby="project-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="project-eyebrow"></div><h2 id="project-title"></h2><div id="project-body"></div></div></dialog>
+  <dialog class="modal" id="note-modal" aria-labelledby="note-title"><div class="modal-scroll"><button class="modal-close" type="button" aria-label="Close">×</button><div class="modal-eyebrow" id="note-eyebrow"></div><h2 id="note-title"></h2><div id="note-body"></div></div></dialog>
   <footer><div class="footer wrap"><a class="logo" href="#home">dschkn.</a><span>© 2026 Dmitrii Shchukin</span><div class="footer-links"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#music">Music</a><a href="https://github.com/dschkn">GitHub ↗</a></div></div></footer>
   <script>
+    const projectContent = {
+      jenga: { eyebrow: "EDTECH · PRODUCT IN PROGRESS", title: "Jenga", body: `<p>A workspace for language schools that brings the daily rhythm of teaching into one clear place.</p><h3>What it brings together</h3><ul><li>Students, teachers, and groups</li><li>Lessons, schedules, and attendance</li><li>A teacher-facing cabinet for everyday work</li></ul><h3>Product direction</h3><p>Jenga is being developed as a practical school operating system, with a web product and a mobile experience for teachers.</p>` },
+      muse: { eyebrow: "PERSONAL PROJECT · CREATIVE TOOLS", title: "MUSE", body: `<p>MUSE is an evolving space for connected notes, fragments, and ideas—a thinking tool shaped around how creative work actually develops.</p><h3>Design principles</h3><ul><li>Make it easy to capture a thought before it disappears</li><li>Let relationships between ideas become visible</li><li>Keep the interface calm while the material grows</li></ul><p>The project explores how interaction design can support reflection without forcing ideas into a rigid format.</p>` },
+      lab: { eyebrow: "MUSIC · RESEARCH", title: "Music & Sound Lab", body: `<p>A collection of studies in sound, listening, and algorithmic composition.</p><h3>Current interests</h3><ul><li>Spectral music and psychoacoustics</li><li>Spatial audio and sound perception</li><li>Generative systems and compositional rules</li><li>Creative coding with Max/MSP and SuperCollider</li></ul><p>The lab is a working notebook: experiments can begin as a patch, a score, a listening question, or a small piece of software.</p>` },
+      boat: { eyebrow: "PERSONAL STUDIO · EXPERIMENTS", title: "Boat Behind", body: `<p>Boat Behind is a home for work in progress: software experiments, musical sketches, interactive tools, and notes.</p><h3>A place to explore</h3><p>Some ideas become products. Others remain studies that help shape the next project. The studio keeps both kinds of work visible and connected.</p><ul><li>Small web tools and creative coding</li><li>Musical research and experiments</li><li>Ideas being developed in public</li></ul>` }
+    };
+    const noteContent = {
+      clarity: { eyebrow: "PRODUCTS · 2026", title: "Making tools feel clear", body: `<p>Useful software makes the next step easy to see. That often starts with a simple question: what is the person trying to do right now?</p><p>When an interface asks people to remember too much, compare too many unrelated things, or guess what happens after a click, the tool adds friction. Clear structure reduces that load: name actions plainly, group related information, and keep feedback close to the action that caused it.</p><h3>Clarity is a product decision</h3><p>It comes from choosing what deserves attention, what can wait, and which details should stay out of the way until they matter. A calm interface is not an empty one; it is an interface that gives each piece of information a reason to be there.</p>` },
+      listening: { eyebrow: "SOUND · 2026", title: "Listening as a design method", body: `<p>Listening is a way to notice relationships: foreground and background, repetition and change, tension and release. Those same relationships appear in a good interface.</p><p>Psychoacoustics reminds us that perception depends on context. A small change can feel large when it interrupts a steady pattern. A dense moment becomes easier to follow when it has a clear point of focus.</p><h3>Designing for attention</h3><p>In software, this means paying attention to timing, contrast, and rhythm. In music, it means shaping the conditions under which a sound can be heard. Both practices ask us to consider not only what is present, but how it is experienced over time.</p>` },
+      sketch: { eyebrow: "PROCESS · 2026", title: "From sketch to running system", body: `<p>A sketch is useful because it makes an idea discussable. It lets us test the shape of a problem before committing to a large build.</p><p>The next step is usually a small working slice: one flow, one page, or one interaction that can be tried in context. Real use reveals questions that static plans often miss.</p><h3>Build in visible steps</h3><p>Keep each step small enough to review, but complete enough to learn from. Connect the interface to real data only when the flow makes sense. Then improve the parts people actually use.</p><p>This turns a first thought into a system through a sequence of concrete decisions rather than one oversized leap.</p>` }
+    };
+    function wireModal(dialog, triggerSelector, content, fields) {
+      document.querySelectorAll(triggerSelector).forEach((trigger) => trigger.addEventListener("click", () => {
+        const item = content[trigger.dataset.project || trigger.dataset.note];
+        if (!item) return;
+        document.getElementById(fields.eyebrow).textContent = item.eyebrow;
+        document.getElementById(fields.title).textContent = item.title;
+        document.getElementById(fields.body).innerHTML = item.body;
+        dialog.showModal();
+        dialog.querySelector(".modal-scroll").scrollTop = 0;
+      }));
+      dialog.querySelector(".modal-close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+    }
+    wireModal(document.getElementById("project-modal"), "[data-project]", projectContent, { eyebrow: "project-eyebrow", title: "project-title", body: "project-body" });
+    wireModal(document.getElementById("note-modal"), "[data-note]", noteContent, { eyebrow: "note-eyebrow", title: "note-title", body: "note-body" });
     document.getElementById("lead-form").addEventListener("submit", function (event) {
       event.preventDefault();
       this.reset();
