@@ -20,6 +20,10 @@ Jenga and deltaMetrics portfolio presentations.
 - `results-matrix-current.png` — latest supplied blood results screen, preserved as the original PNG
 - `profile-overview-current.png` — latest supplied profile dashboard, preserved as the original PNG
 
+## Music & research
+
+- `music-research-banner-master.jpg` — final website banner with Stockhausen, the original mirrored colour photograph of Tristan Murail, SuperCollider code, and Max/MSP patch graphics
+
 The website uses smaller optimized derivatives from `site/assets/`. The full-size
 source files preserve the supplied resolution and are intended for future case
 study layouts, mockups, and Behance-style presentations.
