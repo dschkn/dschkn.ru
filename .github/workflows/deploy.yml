@@ -1,0 +1,109 @@
+name: Deploy dschkn.ru
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+  workflow_dispatch:
+
+concurrency:
+  group: dschkn.ru-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Check deployment key
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          test -n "$DEPLOY_SSH_KEY" || {
+            echo "::error::Add DEPLOY_SSH_KEY in Settings → Secrets and variables → Actions."
+            exit 1
+          }
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 168.222.203.229 >> ~/.ssh/known_hosts
+
+      - name: Prepare web root and HTTPS site
+        run: |
+          ssh dschkn@168.222.203.229 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          deploy_user="$(id -un)"
+          deploy_group="$(id -gn)"
+          sudo -n install -d -o "$deploy_user" -g "$deploy_group" -m 755 /var/www/dschkn.ru
+          sudo -n python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import shutil
+          import subprocess
+          import sys
+
+          path = Path("/etc/caddy/Caddyfile")
+          if not path.is_file():
+              sys.exit("Missing /etc/caddy/Caddyfile; configure Caddy on the VPS first.")
+
+          config = path.read_text()
+          header = re.search(r"(?m)^[^{}\\n]*\\bdschkn\\.ru\\b[^{}\\n]*\\{", config)
+          if header:
+              opening = config.find("{", header.start())
+              depth = 0
+              closing = None
+              for position in range(opening, len(config)):
+                  if config[position] == "{":
+                      depth += 1
+                  elif config[position] == "}":
+                      depth -= 1
+                      if depth == 0:
+                          closing = position
+                          break
+              block = config[header.start():closing + 1] if closing is not None else ""
+              if "root * /var/www/dschkn.ru" not in block or "file_server" not in block:
+                  sys.exit("A dschkn.ru Caddy block already exists with a different root; review it manually.")
+              print("Caddy site block is already configured.")
+          else:
+              addition = """
+          dschkn.ru, www.dschkn.ru {
+              root * /var/www/dschkn.ru
+              encode zstd gzip
+              file_server
+          }
+          """
+              backup = path.with_name("Caddyfile.dschkn.ru-backup")
+              shutil.copy2(path, backup)
+              path.write_text(config.rstrip() + "\\n\\n" + addition.lstrip())
+              validation = subprocess.run(
+                  ["caddy", "validate", "--config", str(path), "--adapter", "caddyfile"],
+                  capture_output=True, text=True
+              )
+              if validation.returncode:
+                  shutil.copy2(backup, path)
+                  sys.exit("Caddy validation failed; the original config was restored: " + validation.stderr[-1000:])
+              reload = subprocess.run(["systemctl", "reload", "caddy"], capture_output=True, text=True)
+              if reload.returncode:
+                  shutil.copy2(backup, path)
+                  subprocess.run(["systemctl", "reload", "caddy"], check=False)
+                  sys.exit("Caddy reload failed; the original config was restored: " + reload.stderr[-1000:])
+              print("Configured HTTPS hosting for dschkn.ru and www.dschkn.ru.")
+          PY
+          REMOTE
+
+      - name: Deploy website
+        run: |
+          rsync -az --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r \
+            --exclude ".DS_Store" \
+            site/ dschkn@168.222.203.229:/var/www/dschkn.ru/
