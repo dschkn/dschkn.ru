@@ -68,7 +68,8 @@
     .project-logo { width: 48px; height: 48px; display: grid; flex: 0 0 48px; place-items: center; border-radius: 15px; color: #fff; background: #171717; font-size: 19px; font-weight: 700; }
     .project-logo.jenga { overflow: hidden; background: var(--accent); }
     .project-logo.jenga img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .project-logo.muse { background: #493b8d; }
+    .project-logo.delta { overflow: hidden; background: #171b1c; }
+    .project-logo.delta img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .project-logo.lab { background: #287a72; }
     .project-logo.tools { background: #d56a41; }
     .project-card h3 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -.03em; }
@@ -228,10 +229,10 @@
           <p class="project-description">A focused workspace for language schools: students, lessons, schedules, and the everyday work around them.</p>
           <div class="project-bottom"><div class="tags"><span class="tag">EdTech</span><span class="tag">CRM</span><span class="tag">Product Design</span></div><span class="project-view">View →</span></div>
         </button>
-        <button class="project-card" type="button" data-project="muse" aria-haspopup="dialog">
-          <div class="project-top"><div class="project-name-wrap"><span class="project-logo muse">M</span><div><h3>MUSE</h3><div class="project-meta">Personal Project · 2026</div></div></div><span class="project-view">View →</span></div>
-          <p class="project-description">A visual space for connected notes, fragments, and ideas — a thinking tool shaped like an instrument.</p>
-          <div class="project-bottom"><div class="tags"><span class="tag">Web App</span><span class="tag">Interaction Design</span></div><span class="project-view">Open ↗</span></div>
+        <button class="project-card" type="button" data-project="delta" aria-haspopup="dialog">
+          <div class="project-top"><div class="project-name-wrap"><span class="project-logo delta"><img src="assets/deltametrics-logo.png" alt="deltaMetrics logo"></span><div><h3>deltaMetrics</h3><div class="project-meta">Independent Product · 2026</div></div></div><span class="project-view">In progress</span></div>
+          <p class="project-description">A focused analytics workspace that turns operational data into clear metrics, trends, and business decisions.</p>
+          <div class="project-bottom"><div class="tags"><span class="tag">Analytics</span><span class="tag">Data Product</span><span class="tag">Dashboards</span></div><span class="project-view">View →</span></div>
         </button>
         <button class="project-card" type="button" data-project="lab" aria-haspopup="dialog">
           <div class="project-top"><div class="project-name-wrap"><span class="project-logo lab">∿</span><div><h3>Music & Sound Lab</h3><div class="project-meta">Research Project · 2025—26</div></div></div><span class="project-view">View →</span></div>
@@ -325,7 +326,7 @@
   <script>
     const projectContent = {
       jenga: { eyebrow: "EDTECH · PRODUCT IN PROGRESS", title: "Jenga", body: `<p>A workspace for language schools that brings the daily rhythm of teaching into one clear place.</p><h3>What it brings together</h3><ul><li>Students, teachers, and groups</li><li>Lessons, schedules, and attendance</li><li>A teacher-facing cabinet for everyday work</li></ul><h3>Product direction</h3><p>Jenga is being developed as a practical school operating system, with a web product and a mobile experience for teachers.</p>` },
-      muse: { eyebrow: "PERSONAL PROJECT · CREATIVE TOOLS", title: "MUSE", body: `<p>MUSE is an evolving space for connected notes, fragments, and ideas—a thinking tool shaped around how creative work actually develops.</p><h3>Design principles</h3><ul><li>Make it easy to capture a thought before it disappears</li><li>Let relationships between ideas become visible</li><li>Keep the interface calm while the material grows</li></ul><p>The project explores how interaction design can support reflection without forcing ideas into a rigid format.</p>` },
+      delta: { eyebrow: "ANALYTICS · PRODUCT IN PROGRESS", title: "deltaMetrics", body: `<p>deltaMetrics is a focused analytics workspace for teams that need to understand what is changing in their business and why.</p><h3>What it brings together</h3><ul><li>Clear definitions for business and product metrics</li><li>Dashboards for trends, targets, and anomalies</li><li>Reports that connect numbers to concrete decisions</li><li>A shared view of performance across the team</li></ul><h3>Product direction</h3><p>The product is designed to turn scattered operational data into a small set of trustworthy signals. The aim is to make analysis easier to read, easier to discuss, and useful in everyday work.</p>` },
       lab: { eyebrow: "MUSIC · RESEARCH", title: "Music & Sound Lab", body: `<p>A collection of studies in sound, listening, and algorithmic composition.</p><h3>Current interests</h3><ul><li>Spectral music and psychoacoustics</li><li>Spatial audio and sound perception</li><li>Generative systems and compositional rules</li><li>Creative coding with Max/MSP and SuperCollider</li></ul><p>The lab is a working notebook: experiments can begin as a patch, a score, a listening question, or a small piece of software.</p>` },
       boat: { eyebrow: "PERSONAL STUDIO · EXPERIMENTS", title: "Boat Behind", body: `<p>Boat Behind is a home for work in progress: software experiments, musical sketches, interactive tools, and notes.</p><h3>A place to explore</h3><p>Some ideas become products. Others remain studies that help shape the next project. The studio keeps both kinds of work visible and connected.</p><ul><li>Small web tools and creative coding</li><li>Musical research and experiments</li><li>Ideas being developed in public</li></ul>` }
     };
