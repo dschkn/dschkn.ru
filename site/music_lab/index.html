@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Music Lab by Dmitrii Shchukin — experiments in composition, sound, perception, and creative code.">
+  <title>Music Lab — Dmitrii Shchukin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#090909;--card:#111;--ink:#f1f0ed;--muted:#8e8e91;--line:#292929;--acid:#d9ff43;--warm:#ff8359;font-family:"DM Sans",Arial,sans-serif;background:var(--bg);color:var(--ink);scroll-behavior:smooth}
+    *{box-sizing:border-box} body{margin:0;min-width:320px;background:var(--bg)} a{color:inherit;text-decoration:none} img{max-width:100%}.wrap{width:min(1200px,calc(100% - 64px));margin-inline:auto}
+    .topbar{position:sticky;z-index:10;top:0;background:rgb(9 9 9 / 88%);border-bottom:1px solid rgb(255 255 255 / 6%);backdrop-filter:blur(16px)}
+    .nav{height:62px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:21px;font-weight:700;letter-spacing:-.09em}.nav-right{display:flex;align-items:center;gap:28px;color:#a2a2a4;font-size:12px}.nav-right a:hover{color:#fff}.live-dot{display:inline-flex;align-items:center;gap:8px}.live-dot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 14px var(--acid)}
+    .hero{min-height:calc(100vh - 62px);display:grid;align-content:space-between;padding-top:clamp(70px,10vw,130px);padding-bottom:34px}.eyebrow{display:flex;align-items:center;gap:12px;color:#999;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.eyebrow::before{content:"";width:34px;height:1px;background:var(--acid)}
+    h1{max-width:1120px;margin:24px 0 28px;font-size:clamp(64px,11vw,154px);font-weight:500;line-height:.83;letter-spacing:-.085em}.hero-accent{color:var(--acid)}.intro{display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:end}.intro p{max-width:650px;margin:0;color:#a3a3a6;font-size:clamp(17px,2vw,23px);line-height:1.55}.scroll{justify-self:end;color:#777;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+    .signal{height:1px;margin-top:64px;background:linear-gradient(90deg,var(--acid),#3d4a22 33%,#272727 33%)}
+    .manifesto{display:grid;grid-template-columns:.6fr 1.4fr;gap:70px;padding:120px 0}.section-no{color:#626266;font-size:11px;letter-spacing:.14em}.manifesto h2{max-width:800px;margin:0;font-size:clamp(37px,6vw,76px);line-height:1.03;letter-spacing:-.065em;font-weight:500}.manifesto h2 span{color:#68686b}
+    .desk-grid{display:grid;grid-template-columns:1.35fr .65fr;grid-template-rows:auto auto;gap:14px}.desk{position:relative;min-height:430px;overflow:hidden;border:1px solid #202020;border-radius:24px;background:var(--card)}.desk.wide{grid-row:span 2}.desk img{width:100%;height:100%;display:block;object-fit:cover;filter:saturate(.78) contrast(1.08);transition:transform .7s ease,filter .4s ease}.desk:hover img{transform:scale(1.025);filter:saturate(1) contrast(1.03)}.desk-copy{position:absolute;inset:auto 0 0;padding:58px 25px 24px;background:linear-gradient(transparent,rgb(0 0 0 / 88%))}.desk-label{color:var(--acid);font-size:10px;letter-spacing:.13em;text-transform:uppercase}.desk h3{margin:9px 0 0;font-size:25px;font-weight:500;letter-spacing:-.045em}.desk.small{min-height:260px}.desk.small h3{font-size:19px}
+    .themes{padding:130px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}.section-head h2{max-width:760px;margin:0;font-size:clamp(42px,7vw,82px);font-weight:500;line-height:.95;letter-spacing:-.07em}.section-head p{max-width:320px;margin:0;color:#858589;font-size:13px;line-height:1.65}
+    .theme-list{border-top:1px solid var(--line)}.theme{display:grid;grid-template-columns:70px 1fr 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--line);align-items:start}.theme-no{color:var(--acid);font-size:12px}.theme h3{margin:0;font-size:clamp(24px,3vw,39px);font-weight:500;letter-spacing:-.05em}.theme p{max-width:490px;margin:5px 0 0;color:#8c8c90;font-size:14px;line-height:1.65}
+    .experiments{margin-bottom:110px;padding:clamp(30px,6vw,70px);border-radius:30px;background:#deded9;color:#111}.experiments .section-no{color:#676766}.experiments h2{max-width:850px;margin:30px 0 55px;font-size:clamp(42px,7vw,86px);font-weight:500;line-height:.95;letter-spacing:-.075em}.experiment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.experiment{min-height:230px;display:flex;flex-direction:column;justify-content:space-between;padding:22px;border:1px solid rgb(0 0 0 / 14%);border-radius:18px;background:rgb(255 255 255 / 28%)}.experiment span{font-size:10px;letter-spacing:.12em;text-transform:uppercase}.experiment h3{margin:0;font-size:23px;line-height:1.08;letter-spacing:-.045em;font-weight:500}.experiment p{margin:10px 0 0;color:#575758;font-size:12px;line-height:1.55}.status{display:inline-flex;width:max-content;padding:6px 9px;border-radius:999px;background:#111;color:#fff;font-size:9px!important}
+    .closing{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:50px 0 80px;border-top:1px solid var(--line)}.closing h2{max-width:720px;margin:0;font-size:clamp(37px,6vw,72px);line-height:1;letter-spacing:-.065em;font-weight:500}.back-button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--acid);color:#111;font-size:13px;font-weight:700;transition:transform .2s}.back-button:hover{transform:translateY(-2px)}footer{padding:24px 0;border-top:1px solid var(--line);color:#68686c;font-size:11px}.footer{display:flex;justify-content:space-between;gap:20px}
+    @media(max-width:800px){.wrap{width:min(100% - 34px,1200px)}.nav-right a:first-child{display:none}.hero{min-height:780px}.intro,.manifesto{grid-template-columns:1fr}.intro{gap:34px}.scroll{justify-self:start}.manifesto{gap:28px;padding:90px 0}.desk-grid{grid-template-columns:1fr;grid-template-rows:auto}.desk.wide{grid-row:auto}.desk{min-height:360px}.desk.small{min-height:300px}.section-head{display:grid}.theme{grid-template-columns:40px 1fr}.theme p{grid-column:2}.experiment-grid{grid-template-columns:1fr}.experiment{min-height:190px}.closing{grid-template-columns:1fr}.back-button{justify-self:start}}
+    @media(max-width:520px){h1{font-size:clamp(58px,22vw,94px)}.hero{min-height:690px}.desk{min-height:290px}.themes{padding:95px 0}.experiments{border-radius:22px}.footer{display:grid}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><nav class="nav wrap"><a class="logo" href="/">dschkn.</a><div class="nav-right"><a href="#workspaces">Workspaces</a><a href="#questions">Research</a><span class="live-dot">Lab notebook · draft 01</span></div></nav></header>
+  <main>
+    <section class="hero wrap">
+      <div><div class="eyebrow">Music · Research · Creative code</div><h1>Sound as<br><span class="hero-accent">material.</span></h1></div>
+      <div><div class="intro"><p>A working space for composition, psychoacoustics, spectral thinking, and algorithmic systems — where listening becomes a method and code becomes an instrument.</p><span class="scroll">Scroll to enter ↓</span></div><div class="signal"></div></div>
+    </section>
+
+    <section class="manifesto wrap"><span class="section-no">00 · APPROACH</span><h2>Not a portfolio of finished pieces. <span>A record of questions, tests, patches, and forms still becoming.</span></h2></section>
+
+    <section class="wrap" id="workspaces" aria-label="Music lab workspaces">
+      <div class="desk-grid">
+        <article class="desk wide"><img src="../assets/music-max-patch.jpg" alt="Max MSP patch in the music lab"><div class="desk-copy"><span class="desk-label">Visual systems</span><h3>Max/MSP as a compositional surface</h3></div></article>
+        <article class="desk small"><img src="../assets/music-supercollider.jpg" alt="SuperCollider code"><div class="desk-copy"><span class="desk-label">Algorithmic sound</span><h3>SuperCollider studies</h3></div></article>
+        <article class="desk small"><img src="../assets/music-studio.jpg" alt="Studio and listening workspace"><div class="desk-copy"><span class="desk-label">Listening practice</span><h3>Studio, score, perception</h3></div></article>
+      </div>
+    </section>
+
+    <section class="themes wrap" id="questions">
+      <div class="section-head"><h2>Fields of attention.</h2><p>Four directions currently shaping the lab. Each will later open into its own projects, notes, audio, and source material.</p></div>
+      <div class="theme-list">
+        <article class="theme"><span class="theme-no">01</span><h3>Spectral composition</h3><p>Harmony understood through timbre, resonance, and the inner life of sound rather than a fixed grid of notes.</p></article>
+        <article class="theme"><span class="theme-no">02</span><h3>Psychoacoustics</h3><p>How hearing constructs pitch, distance, space, fusion, and difference — and how perception can shape musical form.</p></article>
+        <article class="theme"><span class="theme-no">03</span><h3>Algorithmic systems</h3><p>Rules, probabilities, and generative structures that behave less like automation and more like a musical partner.</p></article>
+        <article class="theme"><span class="theme-no">04</span><h3>Spatial listening</h3><p>Sound as architecture: movement, placement, depth, and the changing relationship between listener and room.</p></article>
+      </div>
+    </section>
+
+    <section class="experiments wrap">
+      <span class="section-no">LAB NOTEBOOK · FIRST SKETCH</span>
+      <h2>Experiments will live here.</h2>
+      <div class="experiment-grid">
+        <article class="experiment"><span class="status">Structure placeholder</span><div><h3>Patch studies</h3><p>Interactive Max/MSP systems, diagrams, recordings, and notes from the patching process.</p></div></article>
+        <article class="experiment"><span class="status">Structure placeholder</span><div><h3>Sound objects</h3><p>Short audio experiments organized around a single perceptual or compositional question.</p></div></article>
+        <article class="experiment"><span class="status">Structure placeholder</span><div><h3>Reading & scores</h3><p>Working notes around Stockhausen, Murail, spectral practice, and the systems behind the music.</p></div></article>
+      </div>
+    </section>
+
+    <section class="closing wrap"><h2>A laboratory grows by returning to the same question differently.</h2><a class="back-button" href="/#music">Back to dschkn.ru ↗</a></section>
+  </main>
+  <footer><div class="footer wrap"><span>© 2026 Dmitrii Shchukin</span><span>Music Lab · work in progress</span></div></footer>
+</body>
+</html>
