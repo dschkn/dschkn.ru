@@ -109,12 +109,19 @@
     .other-card ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; color: #717176; font-size: 12px; line-height: 1.45; }
     .other-card li::before { content: "✓"; margin-right: 8px; color: #111; }
     .music-block { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: center; padding: 30px; border-radius: 24px; background: #e9e9e9; }
-    .music-visual { position: relative; min-height: 285px; overflow: hidden; border-radius: 18px; background: radial-gradient(circle at 72% 36%, #f5e7c9, transparent 32%), #d6d8d5; }
-    .music-visual img { position: absolute; display: block; object-fit: cover; border: 5px solid #fff; box-shadow: 0 14px 38px rgb(0 0 0 / 17%); }
-    .music-visual .patch-max { z-index: 1; left: 3%; top: 9%; width: 62%; height: 67%; object-position: center; transform: rotate(-4deg); }
-    .music-visual .patch-sc { z-index: 2; right: 3%; top: 5%; width: 48%; height: 40%; object-position: top; transform: rotate(3deg); }
-    .music-visual .studio-photo { z-index: 3; right: 9%; bottom: -8%; width: 31%; height: 60%; object-position: 35% center; transform: rotate(-3deg); }
-    .music-stamp { position: absolute; z-index: 4; left: 8%; bottom: 8%; padding: 7px 10px; border-radius: 99px; background: #191919; color: white; font-size: 9px; font-weight: 700; letter-spacing: .1em; }
+    .music-visual { position: relative; min-height: 285px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 18px; background: #e8e8e8; isolation: isolate; container-type: inline-size; }
+    .music-visual img { position: absolute; display: block; object-fit: cover; border: 0; box-shadow: none; filter: grayscale(100%); mix-blend-mode: multiply; }
+    .music-visual .patch-max { z-index: 0; left: -3%; top: 0; width: 74%; height: 100%; object-position: left center; opacity: .72; }
+    .music-visual .patch-sc { z-index: 1; right: -5%; top: 2%; width: 62%; height: 58%; object-position: top right; opacity: .55; transform: rotate(1deg); }
+    .music-plot { position: absolute; z-index: 2; top: -2%; right: -2%; width: 60%; height: 72%; opacity: .58; }
+    .music-code { position: absolute; z-index: 3; display: grid; width: max-content; max-width: none; white-space: nowrap; font-family: Arial, sans-serif; font-size: clamp(19px, 4.8cqw, 42px); line-height: 1.12; font-weight: 400; letter-spacing: -.045em; text-shadow: 0 1px 2px rgb(255 255 255 / 58%); }
+    .music-code code { font: inherit; }
+    .music-code.magenta { left: 17%; top: 17%; color: #f20cdb; }
+    .music-code.blue { left: 46%; top: 58%; color: #3025ed; }
+    .music-code .small-code { font-size: .76em; }
+    .music-mark { position: absolute; z-index: 4; font-size: clamp(34px, 9cqw, 82px); line-height: 1; font-weight: 400; }
+    .music-mark.left { left: 23%; top: 2%; color: #f20cdb; transform: rotate(12deg); }
+    .music-mark.right { left: 66%; top: 35%; color: #3025ed; transform: rotate(8deg); }
     .music-block h3 { margin: 0 0 12px; font-size: 24px; font-weight: 500; letter-spacing: -.05em; }
     .music-block p { color: #68686c; font-size: 13px; line-height: 1.7; }
     .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -287,7 +294,7 @@
     <section class="section wrap" id="music">
       <div class="section-title-row"><h2>Music & research</h2><a class="view-all" href="https://boatbehind.online/lab/webernop10">Explore the lab ↗</a></div>
       <div class="music-block">
-        <div class="music-visual" aria-label="Collage of Max and SuperCollider composition tools and a recording studio"><img class="patch-max" src="assets/music-max-patch.jpg" alt="Max patch for a stereo audio processor"><img class="patch-sc" src="assets/music-supercollider.jpg" alt="SuperCollider code and synthesis controls"><img class="studio-photo" src="assets/music-studio.jpg" alt="Studio monitor and recording equipment"><span class="music-stamp">MAX · SUPERCOLLIDER · LISTENING</span></div>
+        <div class="music-visual" aria-label="Layered collage of a Max audio patch, SuperCollider code, and signal plots"><img class="patch-max" src="assets/music-max-patch.jpg" alt="Max patch for a stereo audio processor"><img class="patch-sc" src="assets/music-supercollider.jpg" alt="SuperCollider code and synthesis controls"><svg class="music-plot" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true"><rect width="600" height="300" fill="#f8f8f8"/><g stroke="#777" stroke-width="1" opacity=".55"><path d="M0 35H600M0 75H600M0 115H600M0 155H600M0 195H600M0 235H600M0 275H600"/><path d="M60 0V300M160 0V300M260 0V300M360 0V300M460 0V300M560 0V300"/></g><g fill="#999" fill-opacity=".36" stroke="#555" stroke-width="2"><path d="M42 25H175V118H42zM212 12H378V94H212zM410 38H556V127H410z"/></g><g fill="none" stroke="#555" stroke-width="3"><path d="M0 205 68 198 101 218 145 112 186 204 242 196 285 225 322 194 360 202 407 133 452 198 506 184 600 207"/><path d="M0 264 55 258 91 267 129 240 167 264 214 250 251 267 304 250 348 260 389 244 433 263 477 252 532 264 600 250"/></g></svg><div class="music-code magenta"><code>// 1. Boot the audio engine</code><code class="small-code">s.boot;</code><code>// 2. Set a global clock at 125 BPM</code></div><div class="music-code blue"><code>t = TempoClock.default;</code><code>t.tempo = 125 / 60;</code></div><span class="music-mark left">(</span><span class="music-mark right">))</span></div>
         <div><h3>A software engineer with a composer's ear.</h3><p>Music and research in Max/MSP, SuperCollider, OpenMusic, and the work of Stockhausen: sound as material, code as instrument, and listening as a way to think.</p><a class="view-all" href="https://boatbehind.online/lab/webernop10">Visit the music lab ↗</a></div>
       </div>
     </section>
